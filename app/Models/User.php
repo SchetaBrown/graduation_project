@@ -18,7 +18,6 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'login',
         'email',
         'password',
     ];
@@ -50,5 +49,30 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function participant()
+    {
+        return $this->hasMany(Participant::class);
+    }
+
+    public function manager()
+    {
+        return $this->hasMany(Manager::class);
+    }
+
+    public function team()
+    {
+        return $this->hasMany(Team::class);
+    }
+
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class);
+    }
+
+    public function eventOrder()
+    {
+        return $this->hasMany(EventOrder::class);
     }
 }

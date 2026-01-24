@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Interfaces\CharacterRepositoryInterface;
+use App\Repositories\Interfaces\EventRepositoryInterface;
+
 
 abstract class Controller
 {
-    protected $characterRepository;
-    public function __construct(
-        CharacterRepositoryInterface $characterRepository
-    ) {
-        $this->characterRepository = $characterRepository;
+    protected EventRepositoryInterface $eventRepository;
+    public function __construct(EventRepositoryInterface $eventRepository)
+    {
+        $this->eventRepository = $eventRepository;
     }
 }

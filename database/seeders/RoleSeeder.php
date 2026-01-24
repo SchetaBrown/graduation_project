@@ -8,16 +8,20 @@ use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+    private array $roles = [
+        'участник',
+        'руководитель',
+        'сопровождающий',
+        'ответственный',
+        'администратор'
+    ];
     public function run(): void
     {
-        $roles = ['участник', 'руководитель', 'сопровождающий', 'ответственный', 'администратор'];
 
-        foreach ($roles as $role) {
+
+        foreach ($this->roles as $role) {
             Role::create([
-                'role'=> $role
+                'role' => $role
             ]);
         }
     }

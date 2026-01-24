@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+:root {
+    --blue-color: #4361EE;
+    --light-grey-color: #EDF2F4;
+    --grey-color: #F8F9FA;
+    --dark-grey-color: #555555;
+
+    --light-green-color: #E9F7EF;
+    --green-color: #2E8B57;
+}
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--grey-color);
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+}

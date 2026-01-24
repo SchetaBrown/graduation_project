@@ -10,14 +10,17 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('education_schools', function (Blueprint $table) {
+        Schema::create('event_news', function (Blueprint $table) {
             $table->id();
 
-            $table->string('full_name');
-            $table->string('short_name');
+            $table->string('title');
+            $table->string('image');
+            $table
+                ->text('description')
+                ->nullable();
 
             $table
-                ->foreignId('city_id')
+                ->foreignId('event_id')
                 ->constrained();
 
             $table->timestamps();
@@ -29,6 +32,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('education_schools');
+        Schema::dropIfExists('event_news');
     }
 };

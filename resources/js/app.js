@@ -1,4 +1,4 @@
-import '../css/app.css'
+import '../css/main.css'
 import { createApp, h } from "vue";
 import { createPinia } from "pinia";
 import { createInertiaApp, Link } from "@inertiajs/vue3";
