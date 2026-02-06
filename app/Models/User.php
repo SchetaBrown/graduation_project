@@ -61,16 +61,6 @@ class User extends Authenticatable
         return $this->hasMany(Manager::class);
     }
 
-    public function team()
-    {
-        return $this->hasMany(Team::class);
-    }
-
-    public function teams()
-    {
-        return $this->belongsToMany(Team::class);
-    }
-
     public function eventOrder()
     {
         return $this->hasMany(EventOrder::class);

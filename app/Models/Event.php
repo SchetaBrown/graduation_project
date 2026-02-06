@@ -16,7 +16,6 @@ class Event extends Model
         'end_date',
         'players_count',
         'players_limit',
-        'event_type_id',
         'event_status_id',
         'event_direction_id',
         'created_at',
@@ -51,7 +50,7 @@ class Event extends Model
 
     public function eventTypes()
     {
-        return $this->belongsToMany(EventType::class, 'event_event_types');
+        return $this->belongsToMany(EventType::class, 'event_event_types')->withPivot('event_id');
     }
 
     // Мутаторы и аксессоры

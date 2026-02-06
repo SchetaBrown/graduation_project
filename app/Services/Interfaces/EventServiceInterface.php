@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Services\Interfaces;
+namespace App\Sevices\Interfaces;
+
+use App\Models\Event;
+use App\Models\EventDirection;
 
 interface EventServiceInterface
 {

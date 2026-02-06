@@ -8,7 +8,9 @@ class EventNew extends Model
 {
     // Поля
     protected $fillable = [
-        'event_id'
+        'title',
+        'description',
+        'event_id',
     ];
 
     // Связи

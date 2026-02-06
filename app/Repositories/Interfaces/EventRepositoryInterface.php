@@ -2,11 +2,14 @@
 
 namespace App\Repositories\Interfaces;
 
+use App\Models\Event;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+
 interface EventRepositoryInterface
 {
-    public function getAllEvents(?int $paginate = 15);
-    public function getEventStatuses();
-    public function getEventTypes();
-    public function getEventDirections();
-    public function findEvent(string $id);
+    public function getAllEvents(): ResourceCollection;
+    public function getAllEventDirections(): ResourceCollection;
+    public function getAllEventStatuses(): ResourceCollection;
+    public function getEvent(Event $event): mixed;
 }

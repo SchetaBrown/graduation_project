@@ -1,22 +1,24 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"); */
 
 :root {
-    --blue-color: #4361EE;
-    --light-grey-color: #EDF2F4;
-    --grey-color: #F8F9FA;
-    --dark-grey-color: #555555;
+    --blue-color: #4361ee;
+    --light-gray-color: #edf2f4;
+    --gray-color: #f8f9fa;
+    --dark-gray-color: #555555;
 
-    --light-green-color: #E9F7EF;
-    --green-color: #2E8B57;
+    --light-green-color: #e9f7ef;
+    --green-color: #2e8b57;
 }
 
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 body {
     min-height: 100vh;
-    background: var(--grey-color);
+    background: var(--gray-color);
 }
 
 li {

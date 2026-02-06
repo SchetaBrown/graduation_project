@@ -11,23 +11,26 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('event_orders', function (Blueprint $table) {
-            $$table->id();
+            $table->id();
 
             $table->decimal('score', 8, 2)->default(0);
             $table->integer('place')->nullable();
 
-            $table->foreignId('event_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('team_id')->nullable()->constrained()->onDelete('set null');
-
-
-            $table->timestamps();
+            $table
+                ->foreignId('event_id')
+                ->constrained()
+                ->onDelete('cascade');
+            $table
+                ->foreignId('user_id')
+                ->constrained()
+                ->onDelete('cascade');
 
             $table->unique(['event_id', 'user_id']);
 
-            $table->index(['event_id', 'team_id']);
             $table->index(['event_id', 'score']);
             $table->index(['user_id', 'event_id']);
+
+            $table->timestamps();
         });
     }
 

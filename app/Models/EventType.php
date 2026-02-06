@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventType extends Model
 {
+    // Поля
     protected $fillable = [
+        'id',
         'type',
     ];
 
@@ -15,6 +17,7 @@ class EventType extends Model
         'updated_at',
     ];
 
+    // Связи
     public function events()
     {
         return $this->belongsToMany(Event::class, 'event_event_types');

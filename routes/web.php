@@ -1,15 +1,14 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminIndexController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Event\EventController;
-use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AuthMiddleware;
+use App\Http\Controllers\Web\Auth\LoginController;
+use App\Http\Controllers\Web\Event\EventController;
+use App\Http\Controllers\Web\Auth\RegisterController;
+use App\Http\Controllers\Web\Admin\AdminIndexController;
 
 // Главная страница
 Route::get('/', [EventController::class, 'index'])->name('index');
-
 // Вход в систему
 Route::controller(LoginController::class)
     ->prefix('/login')
@@ -33,7 +32,9 @@ Route::middleware([AuthMiddleware::class])
     ->group(function () {
 
         // Олимпиады
-        Route::controller(EventController::class)->prefix('/events')->name('event.')->group(function () {
+        Route::controller(EventController::class)
+            ->prefix('/events')->name('event.')
+            ->group(function () {
             Route::get('/{event}')->name('show'); // Страница просмотра конкретной олимпиады
         });
     });
@@ -47,6 +48,7 @@ Route::middleware([AuthMiddleware::class])
     });
 
 // Резервнывй маршрут
-Route::fallback(function () {
-    return redirect()->route('index');
-});
+// Route::fallback(function (Exception $e) {
+//     dd($e->getMessage());
+//     return redirect()->route('index');
+// });

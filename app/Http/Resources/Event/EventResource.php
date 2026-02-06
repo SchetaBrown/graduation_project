@@ -15,15 +15,16 @@ class EventResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->when(($request->routeIs('admin.*') || $request->routeIs('event.show')), $this->id),
+            'id' => $this->id,
             'title' => $this->title,
-            'description' => $this->when(!$request->routeIs('admin.*'), $this->description),
+            'description' => $this->description,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'players_count' => $this->players_count,
             'players_limit' => $this->players_limit,
-            'event_direction' => $this->eventDirection->direction,
-            'event_status' => $this->eventStatus->status,
+            'direction' => new EventDirectionResource($this->eventDirection),
+            'status' => new EventStatusResourse($this->eventStatus),
+            'types' => EventTypeResource::collection($this->eventTypes)
         ];
     }
 }

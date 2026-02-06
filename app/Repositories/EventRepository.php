@@ -4,45 +4,34 @@ namespace App\Repositories;
 
 use App\Http\Resources\Event\EventResource;
 use App\Models\Event;
-use App\Models\EventType;
 use App\Models\EventStatus;
 use App\Models\EventDirection;
 use App\Repositories\Interfaces\EventRepositoryInterface;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class EventRepository implements EventRepositoryInterface
 {
-    private function baseQuery()
+    // Получение всех олимпиад
+    public function getAllEvents(): ResourceCollection
     {
-        return Event::with([
-            'eventStatus',
-            'eventNew',
-            'eventDirection',
-            'eventOrder',
-            'eventTypes',
-        ]);
-    }
-    public function getAllEvents(?int $paginate = 15)
-    {
-        return EventResource::collection($this->baseQuery()->paginate($paginate));
+        return EventResource::collection(Event::orderBy('created_at', 'desc')->get());
     }
 
-    public function getEventStatuses()
+    // Получение всех направлений олимпиад
+    public function getAllEventDirections(): ResourceCollection
     {
-        return EventStatus::get();
+        return EventDirection::get()->toResourceCollection();
     }
 
-    public function getEventTypes()
+    // Получение всех статусов олимпиады
+    public function getAllEventStatuses(): ResourceCollection
     {
-        return EventType::get();
+        return EventStatus::get()->toResourceCollection();
     }
 
-    public function getEventDirections()
+    // Получение информации об одной олимпиаде
+    public function getEvent(Event $event): mixed
     {
-        return EventDirection::get();
-    }
-
-    public function findEvent(string $id)
-    {
-        return $this->baseQuery()->findOrFail($id);
+        return Event::findOrFail($event->id);
     }
 }
