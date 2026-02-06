@@ -1,32 +1,33 @@
 <script setup>
-import { AUTH_LINKS } from "../../../constants/links.js";
 import { useForm } from "@inertiajs/vue3";
+import { useAuthStore } from "../../../stores/auth.js";
 
 import InputDiv from "./components/InputDiv.vue";
 import SendButton from "./components/SendButton.vue";
 import AuthLayout from "../../../layouts/AuthLayout.vue";
 import RegisterLink from "./components/RegisterLink.vue";
-import { computed, watch } from "vue";
+
+const authStore = useAuthStore();
 
 const form = useForm({
   email: null,
   password: null,
 });
 
-const sendData = computed((data) => {
+// Отправка формы на сервер
+const sendData = (data) => {
   if (form.email !== null && form.password !== null) {
     form.post(route("login.store"), {
       onSuccess: (success) => {
-        console.log(form)
+        authStore.setAuthStatus(true);
+        form.reset("password");
       },
       onError: (error) => {
-        console.log("Ошибки формы:", form.errors);
-        console.log(error);
         form.reset("password");
       },
     });
   }
-});
+};
 
 const handleInput = (field, value) => {
   form[field] = value;

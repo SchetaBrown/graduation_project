@@ -14,7 +14,9 @@ createInertiaApp({
     resolve: (name) =>
         resolvePageComponent(
             `./pages/${name}.vue`,
-            import.meta.glob("./pages/**/*.vue"),
+            import.meta.glob("./pages/**/*.vue", {
+                eager: false
+            }),
         ),
     setup({ el, App, props, plugin }) {
         const pinia = createPinia();

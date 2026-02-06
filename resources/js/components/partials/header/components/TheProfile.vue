@@ -4,6 +4,8 @@ import LoginLink from "./links/LoginLink.vue";
 import RegisterLink from "./links/RegisterLink.vue";
 
 const props = defineProps(["status"]);
+
+console.log(props.status)
 </script>
 <template>
   <Link

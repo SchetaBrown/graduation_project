@@ -16,13 +16,24 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email:rfc,dns', 'unique:users,email'],
+            'email' => ['required', 'string', 'email:rfc,dns', 'exists:users,email'],
             'password' => ['required', 'string', 'min:8'],
         ];
     }
 
-    protected function failedValidation(Validator $validator)
+    public function messages()
     {
-        return back()->withErrors($validator);
+        return [
+            // Email
+            'email.required' => 'Поле email обязательно к заполнению',
+            'email.string' => 'Поле email должно быть строкового типа',
+            'email.email' => 'Поле email имеет недействительный формат',
+            'email.exists' => 'Данный email уже занят',
+
+            // Пароль
+            'password.required' => 'Поле пароль обязательно к заполнению',
+            'password.string' => 'Поле пароль должно быть строкового типа',
+            'password.min' => 'Минимальная длина: 8 символов',
+        ];
     }
 }

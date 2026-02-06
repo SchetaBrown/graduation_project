@@ -16,11 +16,11 @@ class LoginController extends Controller
     {
         return inertia('auth/Login');
     }
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return back()->with('error', 'Неверные учетные данные');
         }
 

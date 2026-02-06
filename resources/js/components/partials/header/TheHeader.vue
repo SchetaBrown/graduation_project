@@ -5,7 +5,7 @@ import TheHeaderNav from "./components/TheHeaderNav.vue";
 import { useAuthStore } from "../../../stores/auth.js";
 const authStore = useAuthStore();
 
-const isAuth = authStore.authStatus;
+const isAuth = authStore.getAuthStatus();
 </script>
 <template>
   <header class="flex min-h-25 bg-white">

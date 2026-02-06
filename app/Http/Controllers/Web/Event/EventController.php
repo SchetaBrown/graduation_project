@@ -20,7 +20,6 @@ class EventController extends Controller
     public function index(Request $request): Response
     {
         return inertia('Index', [
-            'title' => 'Главная страница',
             'events' => $this->eventRepository->getAllEvents(),
             'event_statuses' => [],
             'event_directions' => [],

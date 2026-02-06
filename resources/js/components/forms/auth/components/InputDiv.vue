@@ -13,7 +13,7 @@ watch(inputValue, (newValue) => {
 });
 </script>
 <template>
-  <div class="flex flex-col gap-1.25">
+  <div class="flex flex-col">
     <label :for="name" class="font-semibold text-[18px]">{{ label }}</label>
     <input
       :type="name === 'password' ? 'password' : 'text'"

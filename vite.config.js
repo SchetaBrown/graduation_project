@@ -19,7 +19,7 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
-    server: {
+    resolve: {
         alias: {
             vue: "vue/dist/vue.esm-bundler.js",
             "@": "/resourses/js/components",

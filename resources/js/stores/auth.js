@@ -2,8 +2,15 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useAuthStore = defineStore("auth", () => {
-    // Свойства
+    // Свойства (можно сказать приватные)
     const authStatus = ref(false);
+
+    // Геттеры
+    function getAuthStatus() {
+        return authStatus.value;
+    }
+
+    console.log(authStatus.value)
 
     // Сеттеры
     function setAuthStatus(status) {
@@ -11,7 +18,7 @@ export const useAuthStore = defineStore("auth", () => {
     }
 
     return {
-        authStatus,
         setAuthStatus,
+        getAuthStatus,
     };
 });
